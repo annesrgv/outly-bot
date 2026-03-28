@@ -1,4 +1,6 @@
 import logging,json,random,aiohttp
+from zoneinfo import ZoneInfo
+MOSCOW=ZoneInfo("Europe/Moscow")
 from datetime import datetime,timedelta
 from telegram import Update,InlineKeyboardButton,InlineKeyboardMarkup,BotCommand,LinkPreviewOptions
 from telegram.ext import Application,CommandHandler,CallbackQueryHandler,MessageHandler,ConversationHandler,ContextTypes,filters
@@ -82,7 +84,7 @@ MONTHS_GEN=["","января","февраля","марта","апреля","ма
 MONTHS_SH=["","янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"]
 
 def get_upcoming():
-    now=datetime.now()
+    now=datetime.now(MOSCOW)
     today=now.strftime("%Y-%m-%d")
     tomorrow=(now+timedelta(days=1)).strftime("%Y-%m-%d")
     result=[]
